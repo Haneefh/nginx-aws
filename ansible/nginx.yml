@@ -1,0 +1,62 @@
+---
+- hosts: all
+  become: true
+  remote_user: "{{ user }}"
+  vars_files:
+    - var.yml
+  pre_tasks:
+    - name: update repositories
+      apt: update_cache=yes
+      changed_when: False
+
+  tasks:
+    - name: install prerequisites
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates 
+          - curl 
+          - gnupg-agent
+          - python3-pip
+          - software-properties-common
+        update_cache: yes
+    
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker Repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu focal stable
+        state: present
+
+    - name: Update apt and install docker-ce
+      apt:
+        name: docker-ce
+        state: latest
+        update_cache: true
+     
+    - name: Ensure Docker service is started and enabled
+      service:
+        name: "docker"
+        state: started
+        enabled: yes
+    
+    - name: Install Docker Module for Python
+      pip:
+        name: docker
+
+    - name: Pull default docker image
+      docker_image:
+        name: "{{ default_container_image }}"
+        source: pull
+
+    - name: Create container
+      docker_container:
+        name: "{{ default_container_name }}"
+        image: "{{ default_container_image }}"
+        state: started
+        ports: "80:80"
+    
+    

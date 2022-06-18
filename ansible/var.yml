@@ -1,0 +1,4 @@
+---
+default_container_image: "nginx"
+default_container_name: "webserver"
+user: "ubuntu"
