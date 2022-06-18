@@ -56,7 +56,7 @@ ansible-galaxy collection install community.docker
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | n/a | `string` | `"us-east-1"` | no |
 | <a name="input_dns_hostnames"></a> [dns\_hostnames](#input\_dns\_hostnames) | n/a | `bool` | `true` | no |
 | <a name="input_instance_tenancy"></a> [instance\_tenancy](#input\_instance\_tenancy) | n/a | `string` | `"default"` | no |
-| <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Ec2 instance type | `string` | `"t3.small"` | no |
+| <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Ec2 instance type | `string` | `"t2.small"` | no |
 | <a name="input_key_name"></a> [key\_name](#input\_key\_name) | n/a | `any` | n/a | yes |
 | <a name="input_name"></a> [name](#input\_name) | Name of the resource | `any` | n/a | yes |
 | <a name="input_private_key_path"></a> [private\_key\_path](#input\_private\_key\_path) | n/a | `any` | n/a | yes |
