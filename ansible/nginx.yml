@@ -4,10 +4,6 @@
   remote_user: "{{ user }}"
   vars_files:
     - var.yml
-  pre_tasks:
-    - name: update repositories
-      apt: update_cache=yes
-      changed_when: False
 
   tasks:
     - name: install prerequisites
